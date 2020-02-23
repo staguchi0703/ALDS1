@@ -43,7 +43,7 @@ def bubbleSort(A, N):
 
 def selectionSort(A, N):
     cnt = 0
-    for i in range(N-1):
+    for i in range(N):
         minj = i
         for j in range(i, N):
             if A[j][1] < A[minj][1]:
