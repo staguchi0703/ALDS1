@@ -26,8 +26,9 @@ def selectionSort(A, N):
         for j in range(i, N):
             if A[j] < A[minj]:
                 minj = j
-        A[i], A[minj] = A[minj], A[i]
-        cnt += 1
+        if i != minj:
+            A[i], A[minj] = A[minj], A[i]
+            cnt += 1
     
     print(*A)
     print(cnt)
