@@ -18,27 +18,40 @@ sys.stdin=f
 # 以下ペースト可
 N = int(input())
 num_list = [int(input()) for _ in range(N)]
+B = num_list[:]
 
 def insertionSort(A, N, g):
     cnt = 0
+
     for i in range(g, N):
         v = A[i]
-        j = i -g
+        j = i - g
+        is_change = 0
         while j >= 0 and A[j] > v:
             A[j+g] = A[j]
             j = j -g
+            is_change = 1
+        
+        if is_change:
             cnt += 1
+
         A[j+g] = v
     return A, cnt
 
 
 def shellSort(A, N):
-    cnt = 0
+
     m = N//2
     G = A[0:m]
     for i in range(m):
         A, temp_cnt = insertionSort(A, N, G[i])
-        cnt = temp_cnt
-    return  m, G, cnt, A,
 
-print(shellSort(num_list, N))
+    return  m, temp_cnt, A
+
+m, cnt, A = shellSort(num_list, N)
+
+print(m)
+print()
+print(cnt)
+for i in A:
+    print(i)
