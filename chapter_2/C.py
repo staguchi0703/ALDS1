@@ -16,21 +16,17 @@ sys.stdin=f
 ##################################
 # %%
 # 以下ペースト可
+import copy
 N = int(input())
 A = [[i for i in item] for item in input().split()]
 
-# print(A)
+B = copy.deepcopy(A)
 
 def bubbleSort(A, N):
-    is_flag = 1
-    cnt = 0
-
-    while is_flag:
-        is_flag = 0
-        for i in range(N-1):
+    for i in range(N):
+        for i in reversed(range(i, N-1)):
             if A[i][1] > A[i+1][1]:
                 A[i], A[i+1] = A[i+1], A[i]
-                is_flag = 1
 
     res = []
     for item in A:
@@ -38,7 +34,8 @@ def bubbleSort(A, N):
         for i in item:
             temp_res += i
         res.append(temp_res)
-    print(*res)
+    return res
+
 
 
 def selectionSort(A, N):
@@ -57,7 +54,15 @@ def selectionSort(A, N):
         for i in item:
             temp_res += i
         res.append(temp_res)
-    print(*res)
+    return res
 
-bubbleSort(A, N)
-selectionSort(A, N)
+A_res = bubbleSort(A, N)
+B_res = selectionSort(B, N)
+
+print(*A_res)
+print('Stable')
+print(*B_res)
+if A_res == B_res:
+    print('Stable')
+else:
+    print('Not stable')
