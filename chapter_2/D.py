@@ -42,16 +42,16 @@ def insertionSort(A, N, g):
 def shellSort(A, N):
 
     m = N//2
-    G = A[0:m]
+    G = list(range(m))
     for i in range(m):
         A, temp_cnt = insertionSort(A, N, G[i])
 
-    return  m, temp_cnt, A
+    return  m, G, temp_cnt, A
 
-m, cnt, A = shellSort(num_list, N)
+m, G, cnt, A = shellSort(num_list, N)
 
 print(m)
-print()
+print(G)
 print(cnt)
 for i in A:
     print(i)
