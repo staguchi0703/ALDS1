@@ -19,24 +19,32 @@ sys.stdin=f
 import collections
 
 letter = input().split(' ')
-stack = collections.deque()
+stack = collections.deque(letter.pop())
 
-cnt = 0
-eq = ''
 
-while stack:
+def calc_chk(num1, num2, op):
+    if op in ['+', '-', '*'] and num1 not in ['+', '-', '*'] and num2 not in ['+', '-', '*']:
+        return True
+    else:
+        return False
 
+while letter:
     temp = letter.pop()
     stack.append(temp)
-        
-    if temp in ['+', '-', '*']:
-        pass
-    else:
-        cnt += 1
 
-        if cnt == 2:
-            for i in range(3):
-                eq += stack.pop)
-
-            cnt = 0
-
+    is_calc = True
+    while is_calc:
+        # print(stack)
+        if len(stack) >=3:
+            if calc_chk(stack[-1], stack[-2], stack[-3]):
+                num1 = stack.pop()
+                num2 = stack.pop()
+                op = stack.pop()
+                val = str(eval(num1 + op + num2))
+                stack.append(val)
+    
+            else:
+                is_calc = False
+        else:
+            is_calc = False
+print(*stack)
