@@ -23,19 +23,18 @@ input_list = [[item for item in input().split()] for _ in range(N)]
 
 que = collections.deque()
 for p, time in input_list:
-    que.append([p, int(time), int(time)])
+    que.append([p, int(time)])
 
 finish_time = 0
 while que:
     temp = que.popleft()
 
     if temp[1] - q <= 0:
-        finish_time = temp[2] + temp[1]
-        print(temp[0], temp[2])
+        finish_time += temp[1]
+        print(temp[0], finish_time)
 
     else:
         finish_time += q
-        temp[2] = finish_time
         temp[1] -= q
         que.append(temp)
 
