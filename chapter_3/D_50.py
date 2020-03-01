@@ -58,9 +58,31 @@ for i, delta in enumerate(landscape):
 # 　 →　池が完成したら池の幅を探索範囲から消す
 #  →　なければ右端上凸ピークとなす水位
 
-print(grid)
-x = [item[0] for item in grid]
-y = [item[1] for item in grid]
+# print(grid)
+# x = [item[0] for item in grid]
+# y = [item[1] for item in grid]
 
-plt.plot(x,y)
-plt.show()
+# plt.plot(x,y)
+# plt.show()
+
+max_node = max(grid, key=lambda x:x[1])
+print(max_node)
+
+
+up_peek = []
+prev = 0
+prev2 = 0 
+for i, height in grid:
+    if height - prev <=0 and prev - prev2 > 0 and i>1:
+        up_peek.append([i-1, prev])
+
+    prev , prev2 = height, prev
+
+if max_node[1] >= 0:
+    #left
+    pass
+else:
+    #right
+    pass
+
+print(up_peek)
