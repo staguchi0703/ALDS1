@@ -1,8 +1,9 @@
+
 # %%
 # VScodeで入力をテキストから読み込んで標準入力に渡す
 import sys
 import os
-f=open(r'.\D\D_input.txt', 'r', encoding="utf-8")
+f=open(r'.\chapter_4\C_input.txt', 'r', encoding="utf-8")
 # inputをフルパスで指定
 # win10でファイルを作るとs-jisで保存されるため、読み込みをutf-8へエンコードする必要あり
 # VScodeでinput file開くとutf8になってるんだけど中身は結局s-jisになっているらしい
@@ -16,6 +17,20 @@ sys.stdin=f
 ##################################
 # %%
 # 以下ペースト可
-num_list = [int(item) for item in input().split()]
-print('D',num_list)
+N = int(input())
+
+comm_list = [input().split() for _ in  range(N)]
+
+dictionary = set()
+
+for comm, v in comm_list:
+    if comm == 'insert':
+        dictionary.add(v)
+    elif comm == 'find':
+        if v in dictionary:
+            print('yes')
+        else:
+            print('no')
+    else:
+        raise
 
