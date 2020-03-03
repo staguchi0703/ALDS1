@@ -41,9 +41,10 @@ def merge(A, left, mid, right):
 def mergeSort(A, left, right):
     if left + 1 < right:
         mid = (left + right)//2;
-        left = mergeSort(A, left, mid)
-        right = mergeSort(A, mid, right)
-        return merge(A, left, mid, right)
+        mergeSort(A, left, mid)
+        mergeSort(A, mid, right)
+        merge(A, left, mid, right)
 
-print(mergeSort(num_list, 0, N-1))
+mergeSort(num_list, 0, N-1)
+print(num_list)
 
