@@ -28,16 +28,10 @@ def partition(A, p, r):
             i += 1
             A[i], A[j] = A[j], A[i]
     A[i+1], A[r] = A[r], A[i+1]
-    return A, i+1
+    return i+1
 
 
-res, index = partition(num_list, 0, len(num_list)-1)
+q = partition(num_list, 0, len(num_list)-1)
 
-res_out = ''
-for i, v in enumerate(res):
-    if i == index:
-        res_out += '['+ str(v) + '] '
-    else:
-        res_out += str(v) + ' ' 
-    
-print(res_out[:-1])
+def quickSort(A, p, r):
+    q = partition(A, p, r):

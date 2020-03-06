@@ -38,16 +38,16 @@ while is_not_just:
     cnt = 0
     for item in w_list:
         temp_sum += item
-        if temp_sum > mid:
+        if temp_sum >= mid:
             temp_res = max(temp_sum, temp_res)
             temp_sum = 0
-            cnt += 1
-            print('temp_res', temp_res)
+            
+            print('temp_res', temp_res, mid)
             print('cnt', cnt)
     cnt += 1
-    if cnt > k:
+    if temp_res < mid:
         left = mid
-    elif cnt < k:
+    elif temp_res > mid:
         right = mid
     else:
         print(temp_res)
