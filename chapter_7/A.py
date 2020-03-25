@@ -68,7 +68,7 @@ def main():
         elif node[3] and node[1] != -1:
             print('internal node', end=', ')
         else:
-            print('node', end=', ')
+            print('root', end=', ')
         print(node[3])
 
 if __name__ == "__main__":
