@@ -63,7 +63,7 @@ def main():
         print('node {}:'.format(node[0]), end=' ')
         print('parent =', node[1], end=', ')
         print('depth =', node[2], end=', ')
-        if node[3] == [] and node[2] != -1:
+        if node[3] == [] and node[1] != -1:
             print('leaf', end=', ')
         elif node[3] and node[1] != -1:
             print('internal node', end=', ')
