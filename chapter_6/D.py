@@ -17,11 +17,37 @@ sys.stdin=f
 # %%
 # 以下ペースト可
 
-N = int(input())
-w_list = [int(item) for item in input()]
+def main():
+    import collections
 
-# 方針
-# 最も重いものの動かす回数を最小にする
-# 最も重いものを選んでstackへ詰める
-# 入れ替えたモノの位置更新と最重をのぞいたリストにする
-# リストが空になるまでやる
+    N = int(input())
+    w_list = [int(item) for item in input().split()]
+
+    # 方針
+    # 最も重いものの動かす回数を最小にする
+    # 最も重いものを選んでstackへ詰める
+    # 入れ替えたモノの位置更新と最重をのぞいたリストにする
+    # リストが空になるまでやる
+
+    stack = collections.deque()
+    temp_list = w_list
+    cost = 0
+    while len(temp_list)>1:
+        temp_max = max(temp_list)
+        max_index = temp_list.index(temp_max)
+        stack.appendleft(temp_max)
+
+        if max_index != len(temp_list) - 1:
+            last_num = temp_list[-1]
+            temp_list[max_index] = last_num
+            cost += temp_max + last_num
+            
+        temp_list.pop()
+    stack.appendleft(temp_list[0])
+
+    print(cost)
+
+    return cost
+
+if __name__ == "__main__":
+    main()
