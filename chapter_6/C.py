@@ -17,11 +17,12 @@ sys.stdin=f
 # %%
 # 以下ペースト可
 import sys
-sys.setrecursionlimit(2000)
+sys.setrecursionlimit(2000000000)
 
 N = int(input())
 origin_list = [input().split() for _ in range(N)]
 card_list = origin_list[:]
+card_list2 = sorted(card_list[:], key=lambda x:x[1])
 
 def partition(A, p, r):
     x = int(A[r][1])
@@ -43,28 +44,28 @@ def quickSort(A, p, r):
 
 quickSort(card_list, 0, len(card_list)-1)
 
-sorce_list = ['' for _ in range(N)]
-test_list = ['' for _ in range(N)]
+# sorce_list = ['' for _ in range(N)]
+# test_list = ['' for _ in range(N)]
 
-temp_num = 0
-cnt = 0
-for i in range(N):
-    if test_list[i][1] > temp_num:
-        temp_num = test_list[i][1]
-        cnt += 1
-    else:
-        sorce_list[cnt] += 
-
-
-
-    index = int(origin_list[i][1])
-    sorce_list[index] += origin_list[i][0]+origin_list[i][1]
-
-    index2 = int(card_list[i][1])
-    test_list[index2] += card_list[i][0]+card_list[i][1] 
+# temp_num = 0
+# cnt = 0
+# for i in range(N):
+#     if test_list[i][1] > temp_num:
+#         temp_num = test_list[i][1]
+#         cnt += 1
+#     else:
+#         sorce_list[cnt] += 
 
 
-if sorce_list == test_list:
+
+#     index = int(origin_list[i][1])
+#     sorce_list[index] += origin_list[i][0]+origin_list[i][1]
+
+#     index2 = int(card_list[i][1])
+#     test_list[index2] += card_list[i][0]+card_list[i][1] 
+
+
+if card_list == card_list2:
     print('Stable')
 else:
     print('Not stable')
