@@ -1,5 +1,6 @@
 # %%
 # VScodeで入力をテキストから読み込んで標準入力に渡す
+# %%
 import sys
 import os
 f=open(r'.\chapter_7\A_input.txt', 'r', encoding="utf-8")
@@ -16,33 +17,32 @@ sys.stdin=f
 ##################################
 # %%
 # 以下ペースト可
+import sys
+sys.setrecursionlimit(1000000000)
 
 def main():
     N = int(input())
     node_attr_list = [[int(item) for item in input().split()] for _ in range(N)]
 
-    tree = [[0, -1, 0, [], False] for _ in range(N)] # [node, parent, depth, [*child_node], foot print]
+    tree = [[0, -1, 0, False, False] for _ in range(N)] # [node, parent, depth, [*child_node], foot print]
+    for node_attr in node_attr_list:
+        tree[node_attr[0]][0] = node_attr[0]
 
-    for i, node_attr in enumerate(node_attr_list):
-        tree[i][0] = node_attr[0]
+        if node_attr[1] != 0:
+            tree[node_attr[0]][3] = node_attr[2:]
+        else:
+            tree[node_attr[0]][3] = False
 
-        if tree[i][1] != 0:
-            tree[i][3] = node_attr[2:]
-
-    
-    def dfs(node, depth, parent, child):
-        # print(node, depth, parent, child)
+    def dfs(node, depth, parent, children):
+        # print(node, depth, parent, children)
         tree[node][4] = True
-        if child == []:
-            tree[node][1] = parent
-            tree[node][2] = depth
-            return
-
-
         tree[node][1] = parent
         tree[node][2] = depth
-        for item in child:
-            dfs(item, depth+1, node, tree[item][3])
+        if children:
+            for item in children:
+                dfs(item, depth+1, node, tree[item][3])
+        else:
+            return
 
     def all(iterable):
         for element in iterable:
@@ -50,28 +50,37 @@ def main():
                 return False
         return True
 
+    # print(node_attr_list)
+
     for i in range(N):
+        # print('dfs',i)
+        # print(tree)
         for j in range(N):
             tree[j][4] = False
-
         dfs(i, 0, -1, tree[i][3])
-
+        # print(tree)
+        # print(all(tree))
         if all(tree):
             break
+
+
 
     for node in tree:
         print('node {}:'.format(node[0]), end=' ')
         print('parent =', node[1], end=', ')
         print('depth =', node[2], end=', ')
-        if node[3] == [] and node[1] != -1:
-            print('leaf', end=', ')
-        elif node[3] and node[1] != -1:
-            print('internal node', end=', ')
-        else:
+        if node[1] == -1:
             print('root', end=', ')
-        print(node[3])
+        elif not node[3]:
+            print('leaf', end=', ')
+        else:
+            print('internal node', end=', ')
+
+        if node[3]:
+            print(node[3])
+        else:
+            print([])
 
 if __name__ == "__main__":
     main()
-
 
