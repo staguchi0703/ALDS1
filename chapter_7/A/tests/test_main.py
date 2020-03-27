@@ -4,7 +4,7 @@ import sys
 from io import StringIO
 from contextlib import redirect_stdout
 
-from .test_A import main
+from .. import main
 
 class Main_test(unittest.TestCase):
     def test_main(self):
