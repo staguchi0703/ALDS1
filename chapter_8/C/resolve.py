@@ -14,6 +14,7 @@ def resolve():
     class BinaryTree():
         def __init__(self):
             self.root = None
+            self.is_found = False
 
         def insert(self, val):
             if self.root == None:
@@ -55,6 +56,17 @@ def resolve():
             print('', node.val, end='')
             self.show_preorder(node.left)
             self.show_preorder(node.right)
+        
+        def find(self, node, target):
+            if node == None:
+                return
+            if node.val == target:    
+                self.is_found = True
+                return
+            
+            self.find(node.left, target)
+            self.find(node.right, target)
+
 
     bt = BinaryTree()
 
@@ -62,6 +74,11 @@ def resolve():
         if query == 'insert':
             value = int(val[0])
             bt.insert(value)
+        elif query == 'find':
+            value = int(val[0])
+            bt.find(bt.root, value)
+            print('yes') if bt.is_found else print('no')
+            bt.is_found = False
         else:
             bt.show_inorder(bt.root)
             print('')
