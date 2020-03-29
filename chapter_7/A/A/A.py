@@ -4,7 +4,7 @@
 import sys
 import os
 
-input_path = __file__.rsplit('/', 2)[0] + '/input.txt'
+input_path = __file__.rsplit('/', 1)[0] + '/input.txt'
 f=open(input_path, 'r', encoding="utf-8")
 # inputをフルパスで指定
 # win10でファイルを作るとs-jisで保存されるため、読み込みをutf-8へエンコードする必要あり
