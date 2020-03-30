@@ -3,20 +3,23 @@ def resolve():
     code here
     '''
     N = int(input())
-    input_matrix = [[int(item) for item in input().split()] for _ in range(N)]
+    mat = [[int(item) for item in input().split()] for _ in range(N)]
 
-    memo = [[0,0] for _ in range(N)]
+    dp = [[1 for _ in range(N+1)] for _ in range(N+1)]
 
-    for i, matrix in enumerate(input_matrix):
+    for i in range(N-1):
+        dp[i][i+1] = mat[i][0] * mat[i+1][0] * mat[i+1][1] 
 
-        memo[i][0] = [int(item) for item in matrix.split()]
-        if i == 0:
-            memo[i][1] = 1
-        else:
-            first_num = memo[i-1][0][0]
-            second_num = memo[i][0][0]
-            memo[i][1] = memo[i-1][1]*first_num*second_num
-    print(memo)
+    print(dp)
+    for i in reversed(range(N-2)):
+        dp[i] = dp[i+1] 
+        print(dp)
+        for j in range(i+2, N):
+            dp[i][j] = min(dp[i][j-1] * mat[i][0]*mat[j][0]*mat[j][1],
+                            dp[i][j])
+
+        print(dp)
+        
 
 if __name__ == "__main__":
     resolve()
