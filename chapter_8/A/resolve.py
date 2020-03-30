@@ -2,6 +2,7 @@ def resolve():
     '''
     code here
     '''
+    
     N = int(input())
     orders = [input().split() for _ in range(N)]
 

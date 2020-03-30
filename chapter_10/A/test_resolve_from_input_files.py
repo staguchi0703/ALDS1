@@ -1,7 +1,6 @@
 import sys
 from io import StringIO
 import unittest
-
 from resolve import resolve
 
 class TestClass(unittest.TestCase):
