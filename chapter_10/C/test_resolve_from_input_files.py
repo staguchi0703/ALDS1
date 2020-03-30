@@ -29,7 +29,6 @@ class TestClass(unittest.TestCase):
 
         self.assertIO(input, output)
 
-
 if __name__ == "__main__":
     unittest.main()
     

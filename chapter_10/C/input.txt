@@ -1,6 +1,7 @@
-5
-3 4 0
-4 -1 -1
-1 -1 -1
-2 -1 -1
-0 1 2
+3
+abcbdab
+bdcaba
+abc
+abc
+abc
+bc
