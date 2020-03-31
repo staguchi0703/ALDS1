@@ -4,7 +4,7 @@ def resolve():
     '''
     import collections
     N = int(input())
-    A_list = [input() for _ in range(N)]
+    A_list = [input() for _ in range(2*N)]
 
     def lcs(a, b):
         num_a = len(a)
@@ -13,14 +13,14 @@ def resolve():
         
         for i in range(num_a):
             for j in range(num_b):
-                if a[i+1] == b[j+1]:
-                    dp[i+1][j+1] = 1
-                
-                for k in range(num_b):
-                    dp[i+1][k] = dp[i][k] + dp[i+1][k]
-                
-                dp[i+1][j+1] = max(dp[i+1][j], dp[i+1][j+1])
-                    
+                dp[i+1][j+1] = dp[i][j+1]
+            
+            for j in range(num_b):
+                if a[i] == b[j]:
+                    dp[i+1][j+1] = max(dp[i+1][j+1], dp[i+1][j]+1)
+
+        return dp[num_a][num_b]
+
     for i in range(N):
         print(lcs(A_list[2*i], A_list[2*i+1]))
 
